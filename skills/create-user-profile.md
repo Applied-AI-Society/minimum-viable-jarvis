@@ -1,12 +1,16 @@
 # Skill: Create or Update User Profile
 
-**Trigger:** User says "create my profile", "who am I", "update my user file", "user.md", or this is their first session and no `artifacts/user.md` exists yet.
+**Trigger:** User says "create my profile", "who am I", "update my user file", "USER.md", or this is their first session and no `user/USER.md` exists yet.
 
 ## What This Skill Does
 
-Interviews the user to build a comprehensive profile that gives the Jarvis deep context on who they are, what they care about, and what is blocking them. Saves the result to `artifacts/user.md`.
+Interviews the user to build a comprehensive profile that gives the Jarvis deep context on who they are, what they care about, and what is blocking them. Saves the result to `user/USER.md`.
 
-If `artifacts/user.md` already exists, read it first and ask what has changed.
+If `user/USER.md` already exists, read it first and ask what has changed.
+
+## Important: When the User Gets Stuck
+
+If the user does not know the answer to a question, or says something like "I'm not sure" or "what do you think?", **use what you already know about them** from prior conversation, from other files in the workspace, or from context they have already given you in this session. Offer your best guess and ask them to confirm or correct it. Say something like: "Based on what you've told me so far, I think the answer might be [your guess]. Does that feel right, or would you adjust it?" This keeps the interview moving and often surfaces insights the user would not have articulated on their own.
 
 ## Interview Flow
 
@@ -38,7 +42,7 @@ Ask these questions **one at a time**. Wait for the user to answer each one befo
 
 ## Output
 
-After the interview, compile everything into `artifacts/user.md` with the following structure:
+After the interview, compile everything into `user/USER.md` with the following structure:
 
 ```markdown
 # User Profile
@@ -61,7 +65,11 @@ After the interview, compile everything into `artifacts/user.md` with the follow
 [From questions 11-12]
 ```
 
-After saving, tell the user: "Your Jarvis now knows who you are. Every future conversation will be informed by this context. You can update this any time by saying 'update my profile.'"
+After saving, tell the user:
+
+"Your Jarvis now knows who you are. Every future conversation will be informed by this context. You can update this any time by saying 'update my profile.'
+
+You can also add more files to your `user/` folder to give your Jarvis even deeper context. For example, you could create a `user/voice-profile.md` that captures your writing style, tone, and how you communicate, so that anything your Jarvis writes on your behalf sounds like you. The `user/` folder is all about your Jarvis getting to know who you are. You can put anything in there that helps."
 
 Then ask: "Would you like me to help you think through your strategic blocker right now? I can draft a plan based on what you just told me."
 

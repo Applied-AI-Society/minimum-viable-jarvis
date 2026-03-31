@@ -13,11 +13,18 @@ This is not a chatbot. This is a persistent memory system that compounds over ti
 ## Folder Structure
 
 ```
+user/                # Everything about you. Your profile, voice, preferences.
 people/              # Relationship files for key people in your life and business
 artifacts/           # Strategic documents, decision records, status updates, plans
 meeting-transcripts/ # Raw or processed transcripts from meetings and conversations
 skills/              # SOPs for your AI agent (skill files that define repeatable tasks)
 ```
+
+### user/
+
+This folder is all about your Jarvis getting to know who you are. The core file is `USER.md`, which captures your identity, values, decision-making style, current situation, strategic blocker, and 90-day vision. On your first session, Claude Code will interview you to create this file automatically.
+
+You can add as many additional files as you want. For example, a `voice-profile.md` that captures your writing style, tone, and communication patterns so anything your Jarvis writes on your behalf sounds like you. The principle is simple: the more your Jarvis knows about you, the more useful it is.
 
 ### people/
 
@@ -25,7 +32,7 @@ One file per person. Capture their name, role, how you met, what you are working
 
 ### artifacts/
 
-Your strategic documents. Status updates, decision records, principles, plans, proposals. Start with a `STATUS.md` that captures the current state of your operation.
+Your strategic documents. Status updates, decision records, principles, plans, proposals.
 
 ### meeting-transcripts/
 
@@ -33,7 +40,7 @@ Raw transcripts from meetings (via tools like Granola, Otter, or manual notes). 
 
 ### skills/
 
-Skill files are SOPs for your AI agent. Each one is a markdown file that describes exactly what the agent should do for a given task. Step by step, in plain English. You co-write these with your agent over time as you discover repeatable workflows.
+Skill files are SOPs for your AI agent. Each one is a markdown file that describes exactly what the agent should do for a given task. Step by step, in plain English. You co-write these with your agent over time as you discover repeatable workflows. The starter repo comes with a `create-user-profile.md` skill that runs automatically on your first session.
 
 ## Getting Started
 

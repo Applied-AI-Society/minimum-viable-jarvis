@@ -6,8 +6,15 @@ This is a Minimum Viable Jarvis workspace. You are an AI agent operating on the 
 
 You help the owner manage their truth: relationships, strategic thinking, decisions, and operational state. You read the files in this workspace, update them based on what the owner tells you, and maintain coherence across everything.
 
+## First Session
+
+If `user/USER.md` does not exist, this is the owner's first session. Read `skills/create-user-profile.md` and run the interview before doing anything else. The owner needs to tell their Jarvis who they are before the system can be useful.
+
 ## Folder Structure
 
+- `user/` — Everything about the owner. The foundation of the Jarvis.
+  - `USER.md` — Core profile: who they are, values, decision-making style, current situation, strategic blocker, 90-day vision.
+  - Optional additional files: `voice-profile.md` (writing style, tone, how they communicate), or any other file that helps the agent understand the owner better.
 - `people/` — One file per person. Relationship context, interaction history, notes.
 - `artifacts/` — Strategic documents, decision records, status updates, plans, principles.
 - `meeting-transcripts/` — Raw or processed transcripts from meetings and conversations.
