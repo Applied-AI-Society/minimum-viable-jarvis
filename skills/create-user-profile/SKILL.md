@@ -1,20 +1,23 @@
-# Skill: Create or Update User Profile
+---
+name: create-user-profile
+description: Interview the user to build a comprehensive profile that gives the Jarvis deep context on who they are, what they care about, and what is blocking them. Use when user says "create my profile", "who am I", "update my user file", "USER.md", or when no user/USER.md exists yet.
+---
 
-**Trigger:** User says "create my profile", "who am I", "update my user file", "USER.md", or this is their first session and no `user/USER.md` exists yet.
+# Create or Update User Profile
 
-## What This Skill Does
+Interview the user to build their core profile. Saves the result to `user/USER.md`.
 
-Interviews the user to build a comprehensive profile that gives the Jarvis deep context on who they are, what they care about, and what is blocking them. Saves the result to `user/USER.md`.
+## Pre-check
 
-If `user/USER.md` already exists, read it first and ask what has changed.
+If `user/USER.md` already exists, read it first and ask what has changed. Skip questions where the existing answer is still accurate.
 
-## Important: When the User Gets Stuck
+## When the User Gets Stuck
 
-If the user does not know the answer to a question, or says something like "I'm not sure" or "what do you think?", **use what you already know about them** from prior conversation, from other files in the workspace, or from context they have already given you in this session. Offer your best guess and ask them to confirm or correct it. Say something like: "Based on what you've told me so far, I think the answer might be [your guess]. Does that feel right, or would you adjust it?" This keeps the interview moving and often surfaces insights the user would not have articulated on their own.
+If the user says "I'm not sure" or "what do you think?", use what you already know about them from prior conversation, other workspace files, or context from this session. Offer your best guess and ask them to confirm or correct. Example: "Based on what you've told me so far, I think the answer might be [your guess]. Does that feel right, or would you adjust it?"
 
 ## Interview Flow
 
-Ask these questions **one at a time**. Wait for the user to answer each one before moving to the next. Do not dump all questions at once. Keep a conversational, warm tone. If the user gives a short answer, ask a follow-up to go deeper.
+Ask these questions **one at a time**. Wait for the user to answer each one before moving to the next. Keep a conversational, warm tone. If the user gives a short answer, ask a follow-up to go deeper.
 
 ### Part 1: Who You Are
 
@@ -42,7 +45,7 @@ Ask these questions **one at a time**. Wait for the user to answer each one befo
 
 ## Output
 
-After the interview, compile everything into `user/USER.md` with the following structure:
+After the interview, compile everything into `user/USER.md`:
 
 ```markdown
 # User Profile
@@ -65,7 +68,9 @@ After the interview, compile everything into `user/USER.md` with the following s
 [From questions 11-12]
 ```
 
-After saving, tell the user:
+## After Saving
+
+Tell the user:
 
 "Your Jarvis now knows who you are. Every future conversation will be informed by this context. You can update this any time by saying 'update my profile.'
 
