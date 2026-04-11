@@ -8,7 +8,14 @@ You help the owner manage their truth: relationships, strategic thinking, decisi
 
 ## First Session
 
-If `user/USER.md` does not exist, this is the owner's first session. Read `skills/create-user-profile.md` and run the interview before doing anything else. The owner needs to tell their Jarvis who they are before the system can be useful.
+If `user/USER.md` does not exist, this is the owner's first session. Read `skills/onboard/SKILL.md` and run the full onboarding flow before doing anything else. This will:
+
+1. Import any existing AI conversation history (ChatGPT, Claude exports) and documents
+2. Build a comprehensive user profile at `user/USER.md`
+3. Interview the owner about the thing they are most stuck on right now
+4. Produce an actionable plan saved to `artifacts/`
+
+The owner should walk away from their first session with a working system that knows who they are AND a concrete plan for their most important problem.
 
 ## Folder Structure
 
