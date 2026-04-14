@@ -11,11 +11,12 @@ This is not a chatbot. This is a persistent memory system that compounds over ti
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org), [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`), and [GitHub CLI](https://cli.github.com) (`brew install gh` on Mac, then `gh auth login`). The GitHub CLI is required for the built-in sync script.
-2. Fork this repo on GitHub so you have your own private copy, then clone it: `git clone https://github.com/YOUR-USERNAME/minimum-viable-jarvis.git`
-3. Open in VS Code: `code minimum-viable-jarvis`
-4. Open the terminal (Terminal > New Terminal) and run: `claude`
-5. Your Jarvis will walk you through the rest. On your first session, it runs the **onboard** skill automatically: imports your existing AI history, builds your profile, and interviews you about your most important blocker.
-6. Turn on hourly auto-sync so your work is backed up to GitHub: `bash scripts/install-sync-cron.sh`
+2. Create a `github-repos` folder in your home directory to keep all your repos in one predictable place: `mkdir -p ~/github-repos && cd ~/github-repos`
+3. Fork this repo on GitHub so you have your own private copy, then clone it into `~/github-repos`: `git clone https://github.com/YOUR-USERNAME/minimum-viable-jarvis.git`
+4. Open in VS Code: `code minimum-viable-jarvis`
+5. Open the terminal (Terminal > New Terminal) and run: `claude`
+6. Your Jarvis will walk you through the rest. On your first session, it runs the **onboard** skill automatically: imports your existing AI history, builds your profile, and interviews you about your most important blocker.
+7. Turn on hourly auto-sync so your work is backed up to GitHub: `bash scripts/install-sync-cron.sh`
 
 ## Folder Structure
 
