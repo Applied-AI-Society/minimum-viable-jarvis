@@ -10,11 +10,12 @@ This is not a chatbot. This is a persistent memory system that compounds over ti
 
 ## Quick Start
 
-1. Install [Node.js](https://nodejs.org) and [Claude Code](https://docs.anthropic.com/en/docs/claude-code): `npm install -g @anthropic-ai/claude-code`
-2. Clone this repo: `git clone https://github.com/Applied-AI-Society/minimum-viable-jarvis.git`
+1. Install [Node.js](https://nodejs.org), [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`), and [GitHub CLI](https://cli.github.com) (`brew install gh` on Mac, then `gh auth login`). The GitHub CLI is required for the built-in sync script.
+2. Fork this repo on GitHub so you have your own private copy, then clone it: `git clone https://github.com/YOUR-USERNAME/minimum-viable-jarvis.git`
 3. Open in VS Code: `code minimum-viable-jarvis`
 4. Open the terminal (Terminal > New Terminal) and run: `claude`
 5. Your Jarvis will walk you through the rest. On your first session, it runs the **onboard** skill automatically: imports your existing AI history, builds your profile, and interviews you about your most important blocker.
+6. Turn on hourly auto-sync so your work is backed up to GitHub: `bash scripts/install-sync-cron.sh`
 
 ## Folder Structure
 
@@ -28,6 +29,9 @@ minimum-viable-jarvis/
 ├── people/                      # One file per person in your life
 ├── artifacts/                   # Strategic documents, plans, decisions
 ├── meeting-transcripts/         # Processed transcripts from meetings
+├── scripts/                     # Workspace automation
+│   ├── sync.sh                  # Commit local changes, pull + push to GitHub
+│   └── install-sync-cron.sh     # Register hourly sync as a cron job
 └── skills/                      # Skill files that define repeatable workflows
     ├── onboard/                 # First-session onboarding flow
     ├── create-user-profile/     # Build or update your user profile
@@ -87,6 +91,23 @@ Skill files are plain-English SOPs for your AI agent. Each one describes a repea
 **You are the bottleneck.** Not the tools, not the models. Your strategic thinking, your clarity of communication, and your willingness to document what you know. This system helps you get what is inside your head into files that compound.
 
 **Sovereignty matters.** Everything in this system is plain markdown files on your computer. No vendor lock-in. No subscription required to access your own data. If a better AI tool comes out tomorrow, point it at the same folder and keep going.
+
+## Keeping Your Workspace Synced
+
+Once you push your workspace to GitHub, you want it to stay synced automatically so nothing is ever lost and so any machine (or collaborator you invite) is up to date. The starter repo ships with a small sync script and a one-liner to install it as an hourly cron:
+
+```bash
+# one-time
+bash scripts/install-sync-cron.sh
+```
+
+That registers a cron entry that runs `scripts/sync.sh` every hour. The script commits anything new, rebases against the remote, and pushes. Output is appended to `.jarvis-sync.log` (ignored by git).
+
+Prerequisites: `gh auth login` must be complete (so pushes work without prompting). Remove the cron later with:
+
+```bash
+crontab -l | grep -v scripts/sync.sh | crontab -
+```
 
 ## Harness Compatibility
 
