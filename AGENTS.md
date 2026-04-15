@@ -20,6 +20,7 @@ When the owner gives you input, classify and route it:
 | "Help me think through X" | Strategic interview | `skills/think-through-it/SKILL.md` |
 | "Create a skill for X" | Interview and create | `skills/create-skill/SKILL.md` |
 | "Update my profile" | Re-interview | `skills/create-user-profile/SKILL.md` |
+| "Sync with upstream" / "Pull template updates" | Pull MVJ template updates safely | `skills/sync-with-upstream/SKILL.md` |
 | About a person | Update `people/firstname-lastname.md` | |
 | Strategic thought / decision | Save to `artifacts/YYYY-MM-DD-slug.md` | |
 

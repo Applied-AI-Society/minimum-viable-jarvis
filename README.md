@@ -1,6 +1,6 @@
 # Minimum Viable Jarvis
 
-Your personal AI-operated business OS. Fork it, clone it, open it, and start talking. By the end of your first session, you will have an AI system that knows who you are and a plan for the thing that matters most to you right now.
+Your personal AI-operated business OS. Spin up your own private copy from this template, open it, and start talking. By the end of your first session, you will have an AI system that knows who you are and a plan for the thing that matters most to you right now.
 
 ## What This Is
 
@@ -11,20 +11,30 @@ This is not a chatbot. This is a persistent memory system that compounds over ti
 ## Quick Start
 
 1. Install the prerequisites: [Node.js](https://nodejs.org), [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`), [VS Code](https://code.visualstudio.com) (then open it and run "Shell Command: Install 'code' command in PATH" from the command palette so the `code` CLI works), and [GitHub CLI](https://cli.github.com) (`brew install gh` on Mac). The GitHub CLI is required for the built-in sync script.
+   - **If `claude --version` fails after install:** Claude Code is installed but not on your PATH. Add it to your shell config (Mac / Linux):
+     ```bash
+     echo 'export PATH="$HOME/.claude/local:$PATH"' >> ~/.zshrc
+     source ~/.zshrc
+     ```
+     (Use `~/.bashrc` instead of `~/.zshrc` if you are on bash.) Open a new terminal and `claude --version` should work.
 2. Sign in to GitHub from the CLI: `gh auth login`. Follow the prompts (choose HTTPS and authenticate via browser for the smoothest path).
 3. Create a `github-repos` folder in your home directory to keep all your repos in one predictable place: `mkdir -p ~/github-repos && cd ~/github-repos`
-4. Get your own copy of this repo. Because GitHub forks can't be made private, do this instead: create a new **private** repo on GitHub called `minimum-viable-jarvis` (leave it empty, no README), then mirror this starter into it:
-   ```bash
-   cd ~/github-repos
-   git clone https://github.com/Applied-AI-Society/minimum-viable-jarvis.git
-   cd minimum-viable-jarvis
-   git remote set-url origin https://github.com/YOUR-USERNAME/minimum-viable-jarvis.git
-   git push -u origin main
-   ```
+4. Get your own private copy. This repo is a **GitHub template**, so creating yours is one click:
+   - Visit [github.com/Applied-AI-Society/minimum-viable-jarvis](https://github.com/Applied-AI-Society/minimum-viable-jarvis)
+   - Click **"Use this template"** → **"Create a new repository"**
+   - Name it `minimum-viable-jarvis` (or whatever you prefer), set visibility to **Private**, click Create
+   - Clone your new private repo locally:
+     ```bash
+     cd ~/github-repos
+     gh repo clone YOUR-USERNAME/minimum-viable-jarvis
+     cd minimum-viable-jarvis
+     ```
 5. Open in VS Code: `cd ~/github-repos && code minimum-viable-jarvis`
 6. Open the terminal (Terminal > New Terminal) and run: `claude`
 7. Your Jarvis will walk you through the rest. On your first session, it runs the **onboard** skill automatically: imports your existing AI history, builds your profile, and interviews you about your most important blocker.
 8. Turn on hourly auto-sync so your work is backed up to GitHub: `bash scripts/install-sync-cron.sh`
+
+> **Pulling future updates from the template:** The MVJ template gets better over time (new skills, updated scripts). When you want the latest, just say to your Jarvis: *"sync with upstream"*. It will pull the new goodies from `Applied-AI-Society/minimum-viable-jarvis` without touching your personal files. See the [sync-with-upstream](skills/sync-with-upstream/SKILL.md) skill for details. You cannot accidentally push to the upstream template: you are not a collaborator on that repo, and the skill configures your local remote with a disabled push URL as a second safety net.
 
 ## Folder Structure
 
@@ -48,7 +58,8 @@ minimum-viable-jarvis/
     ├── process-braindump/       # Route unstructured input to the right files
     ├── prep-for-meeting/        # Generate meeting prep briefs
     ├── process-transcript/      # Extract insights from meeting transcripts
-    └── create-skill/            # Create new skills through interview
+    ├── create-skill/            # Create new skills through interview
+    └── sync-with-upstream/      # Pull updates from the MVJ template
 ```
 
 ### user/
@@ -84,6 +95,7 @@ Skill files are plain-English SOPs for your AI agent. Each one describes a repea
 | **prep-for-meeting** | Meeting prep brief from your relationship files | "Prep me for my meeting with Sarah" |
 | **process-transcript** | Extract everything from a meeting transcript | "Process this transcript" or paste a transcript |
 | **create-skill** | Interview you to create a new skill file | "Create a skill for X" or "I want a workflow for X" |
+| **sync-with-upstream** | Pull the latest template updates (new skills, scripts, README) without touching your personal files | "Sync with upstream" or "Pull template updates" |
 
 ## How It Works
 
