@@ -74,7 +74,7 @@ Summarize for the owner in plain language:
 
 - How many new commits are incoming
 - What files upstream touched (scripts, skills, README, etc.)
-- Especially call out **any new skill directories** that have appeared in `skills/` (for each, read the `SKILL.md` frontmatter so you can describe what it does)
+- Especially call out **any new skill directories** that have appeared in `.agents/skills/` (for each, read the `SKILL.md` frontmatter so you can describe what it does)
 
 Ask the owner to confirm before merging.
 
