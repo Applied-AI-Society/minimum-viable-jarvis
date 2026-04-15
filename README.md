@@ -118,7 +118,10 @@ Claude Code auto-discovers every skill in `.agents/skills/` as a slash command. 
 | **create-skill** | `/create-skill` | Interview you to create a new skill file | "Create a skill for X" or "I want a workflow for X" |
 | **sync-with-upstream** | `/sync-with-upstream` | Pull the latest template updates (new skills, scripts, README) without touching your personal files | "Sync with upstream" or "Pull template updates" |
 
-For Hermes and Codex users: slash commands are a Claude Code native feature, but the natural-language triggers still work for you via `AGENTS.md` routing.
+**Harness notes:**
+- **Claude Code** auto-discovers these via the committed `.claude/skills` symlink. Zero config.
+- **Codex** auto-discovers `.agents/skills/` natively. Zero config. Slash commands work the same way.
+- **Hermes** only auto-discovers skills from `~/.hermes/skills/` by default. To get slash-command discovery for workspace skills, add the workspace's `.agents/skills/` path to the `skills.external_dirs` list in `~/.hermes/config.yaml`. Natural-language triggers (via `AGENTS.md` routing) work regardless, even without the config.
 
 ## How It Works
 
