@@ -9,7 +9,7 @@ Interview the user about the most important thing they are puzzling over right n
 
 ## Pre-check
 
-**If `user/USER.md` does not exist**, tell the user: "I need to know who you are before I can help you think through something. Let me interview you first." Then run the `create-user-profile` skill (read `skills/create-user-profile/SKILL.md` and execute it). Come back to this skill after the profile is created.
+**If `user/USER.md` does not exist**, tell the user: "I need to know who you are before I can help you think through something. Let me interview you first." Then run the `create-user-profile` skill (read `.agents/skills/create-user-profile/SKILL.md` and execute it). Come back to this skill after the profile is created.
 
 **If `user/USER.md` exists**, read it first. Use it as context for every question you ask. Reference their goals, their values, their current situation, and their stated blockers. The more you connect your questions to what you already know about them, the more useful this conversation will be.
 

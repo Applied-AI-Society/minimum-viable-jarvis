@@ -34,7 +34,7 @@ This is not a chatbot. This is a persistent memory system that compounds over ti
 7. Your Jarvis will walk you through the rest. On your first session, it runs the **onboard** skill automatically: imports your existing AI history, builds your profile, and interviews you about your most important blocker.
 8. Turn on hourly auto-sync so your work is backed up to GitHub: `bash scripts/install-sync-cron.sh`
 
-> **Pulling future updates from the template:** The MVJ template gets better over time (new skills, updated scripts). When you want the latest, just say to your Jarvis: *"sync with upstream"*. It will pull the new goodies from `Applied-AI-Society/minimum-viable-jarvis` without touching your personal files. See the [sync-with-upstream](skills/sync-with-upstream/SKILL.md) skill for details. You cannot accidentally push to the upstream template: you are not a collaborator on that repo, and the skill configures your local remote with a disabled push URL as a second safety net.
+> **Pulling future updates from the template:** The MVJ template gets better over time (new skills, updated scripts). When you want the latest, run `/sync-with-upstream` in Claude Code (or just tell your harness *"sync with upstream"*). It will pull the new goodies from `Applied-AI-Society/minimum-viable-jarvis` without touching your personal files. See the [sync-with-upstream](.agents/skills/sync-with-upstream/SKILL.md) skill for details. You cannot accidentally push to the upstream template: you are not a collaborator on that repo, and the skill configures your local remote with a disabled push URL as a second safety net.
 
 ## Folder Structure
 
@@ -51,16 +51,33 @@ minimum-viable-jarvis/
 ├── scripts/                     # Workspace automation
 │   ├── sync.sh                  # Commit local changes, pull + push to GitHub
 │   └── install-sync-cron.sh     # Register hourly sync as a cron job
-└── skills/                      # Skill files that define repeatable workflows
-    ├── onboard/                 # First-session onboarding flow
-    ├── create-user-profile/     # Build or update your user profile
-    ├── think-through-it/        # Interview on your most important blocker
-    ├── process-braindump/       # Route unstructured input to the right files
-    ├── prep-for-meeting/        # Generate meeting prep briefs
-    ├── process-transcript/      # Extract insights from meeting transcripts
-    ├── create-skill/            # Create new skills through interview
-    └── sync-with-upstream/      # Pull updates from the MVJ template
+├── .agents/
+│   └── skills/                  # Canonical skills location (vendor-neutral convention)
+│       ├── onboard/             # First-session onboarding flow
+│       ├── create-user-profile/ # Build or update your user profile
+│       ├── think-through-it/    # Interview on your most important blocker
+│       ├── process-braindump/   # Route unstructured input to the right files
+│       ├── prep-for-meeting/    # Generate meeting prep briefs
+│       ├── process-transcript/  # Extract insights from meeting transcripts
+│       ├── create-skill/        # Create new skills through interview
+│       └── sync-with-upstream/  # Pull updates from the MVJ template
+└── .claude/
+    └── skills -> ../.agents/skills   # Symlink so Claude Code auto-discovers the same skills
 ```
+
+**Skills live under `.agents/skills/` as the canonical location.** This is vendor-neutral: it is the path [Codex auto-discovers by default](https://developers.openai.com/codex/skills), the example path [Hermes docs recommend for shared/external skill directories](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills), and it avoids branding the workspace around any single vendor.
+
+For Claude Code, which hardcodes its auto-discovery to `.claude/skills/`, the template commits a symlink `.claude/skills → ../.agents/skills` so the same skill directories are picked up automatically. Launch `claude` inside the workspace and `/onboard`, `/sync-with-upstream`, `/prep-for-meeting`, etc. all appear in the slash-command menu with zero manual registration.
+
+For Hermes users: either use the natural-language triggers in the table below (which work via `AGENTS.md` routing), or add this workspace's skills directory to your `~/.hermes/config.yaml` so Hermes auto-registers them as slash commands too:
+
+```yaml
+skills:
+  external_dirs:
+    - /absolute/path/to/this/workspace/.agents/skills
+```
+
+**Windows note:** the `.claude/skills` symlink requires Git's symlink support. On modern Git for Windows installers with developer mode enabled, `core.symlinks=true` by default and everything works. If your clone shows a broken symlink (a text file rather than a working link), run `git config --global core.symlinks true` and re-clone, or run the fallback from `scripts/setup-claude-skills-windows.ps1`.
 
 ### user/
 
@@ -80,22 +97,28 @@ Your strategic documents. Plans, decision records, principles, status updates, p
 
 Processed meeting notes. Drop a raw transcript (from Granola, Otter, voice memo, or manual notes) and your Jarvis extracts attendees, decisions, action items, and updates the relevant people files.
 
-### skills/
+### .agents/skills/
 
 Skill files are plain-English SOPs for your AI agent. Each one describes a repeatable workflow step by step. Your Jarvis reads them and follows them. You build new skills over time as you discover patterns in your work.
 
+Why `.agents/skills/` and not `.claude/skills/` or `skills/`? Because [Codex auto-discovers `.agents/skills/`](https://developers.openai.com/codex/skills) by default, [Hermes recommends it](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills) as the conventional external-skills path, and it does not brand the workspace around any single vendor. A committed `.claude/skills → ../.agents/skills` symlink makes Claude Code auto-discover the same directory (Claude Code hardcodes its discovery path to `.claude/skills/`). The `AGENTS.md` routing table points at `.agents/skills/` paths so any harness that reads AGENTS.md finds the same skills whether or not it does auto-discovery.
+
 ## Built-In Skills
 
-| Skill | What It Does | How to Trigger |
-|-------|-------------|----------------|
-| **onboard** | Full first-session setup: import AI history, build profile, strategic interview | Runs automatically if no USER.md exists |
-| **create-user-profile** | Interview to build or update your profile | "Create my profile" or "Update my profile" |
-| **think-through-it** | Strategic interview on whatever you are most stuck on | "Help me think through something" or "I'm stuck" |
-| **process-braindump** | Route a brain dump to the correct files | Paste any unstructured text or voice transcript |
-| **prep-for-meeting** | Meeting prep brief from your relationship files | "Prep me for my meeting with Sarah" |
-| **process-transcript** | Extract everything from a meeting transcript | "Process this transcript" or paste a transcript |
-| **create-skill** | Interview you to create a new skill file | "Create a skill for X" or "I want a workflow for X" |
-| **sync-with-upstream** | Pull the latest template updates (new skills, scripts, README) without touching your personal files | "Sync with upstream" or "Pull template updates" |
+Claude Code auto-discovers every skill in `.agents/skills/` as a slash command. You can always invoke a skill explicitly with `/skill-name`, or just say a trigger phrase and the `AGENTS.md` routing will pick the right one.
+
+| Skill | Slash Command | What It Does | Natural Trigger |
+|-------|---------------|--------------|-----------------|
+| **onboard** | `/onboard` | Full first-session setup: import AI history, build profile, strategic interview | Runs automatically if no `user/USER.md` exists |
+| **create-user-profile** | `/create-user-profile` | Interview to build or update your profile | "Create my profile" or "Update my profile" |
+| **think-through-it** | `/think-through-it` | Strategic interview on whatever you are most stuck on | "Help me think through something" or "I'm stuck" |
+| **process-braindump** | `/process-braindump` | Route a brain dump to the correct files | Paste any unstructured text or voice transcript |
+| **prep-for-meeting** | `/prep-for-meeting` | Meeting prep brief from your relationship files | "Prep me for my meeting with Sarah" |
+| **process-transcript** | `/process-transcript` | Extract everything from a meeting transcript | "Process this transcript" or paste a transcript |
+| **create-skill** | `/create-skill` | Interview you to create a new skill file | "Create a skill for X" or "I want a workflow for X" |
+| **sync-with-upstream** | `/sync-with-upstream` | Pull the latest template updates (new skills, scripts, README) without touching your personal files | "Sync with upstream" or "Pull template updates" |
+
+For Hermes and Codex users: slash commands are a Claude Code native feature, but the natural-language triggers still work for you via `AGENTS.md` routing.
 
 ## How It Works
 

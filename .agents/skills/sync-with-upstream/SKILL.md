@@ -9,7 +9,7 @@ Pull updates from the upstream `Applied-AI-Society/minimum-viable-jarvis` templa
 
 ## What Upstream Owns (Safe To Update)
 
-- `skills/` (default skills shipped with the template)
+- `.agents/skills/` (default skills the template ships — the ones the owner sees as `/slash-commands` in Claude Code)
 - `scripts/`
 - `README.md`
 - `CLAUDE.md`, `AGENTS.md`
@@ -21,7 +21,7 @@ Pull updates from the upstream `Applied-AI-Society/minimum-viable-jarvis` templa
 - `people/`
 - `artifacts/`
 - `meeting-transcripts/`
-- `skills/personal/` (any skills the owner created themselves should live here)
+- Any skill directory the owner added themselves under `.agents/skills/` (upstream only ever modifies the named default skills listed in this repo's README; custom skill names outside that list are left alone)
 
 Merge conflicts are only possible in the shared root files (`README.md`, `CLAUDE.md`, `AGENTS.md`) or in default skills the owner has customized.
 
@@ -94,7 +94,7 @@ For each conflict:
 2. Propose a merge strategy:
    - For `README.md`: usually accept upstream's version since it is the shared docs
    - For `CLAUDE.md` / `AGENTS.md`: merge both, preserving any owner-added sections
-   - For a customized default skill: offer to move the owner's version to `skills/personal/<skill-name>/` (preserving it) and accept upstream's version at the original path, OR keep the owner's version and discard upstream's changes to that skill
+   - For a customized default skill: offer to rename the owner's version to `.agents/skills/<skill-name>-custom/` (preserving it as its own discoverable skill) and accept upstream's version at the original path, OR keep the owner's version and discard upstream's changes to that skill
 3. Apply the chosen merge, then `git add <files> && git commit`
 
 ### Step 6: Push to origin
@@ -121,7 +121,7 @@ Invite the owner to try the new skills.
 
 ## Principles
 
-- **The owner's files are sacred.** Never touch `user/`, `people/`, `artifacts/`, `meeting-transcripts/`, or `skills/personal/`.
+- **The owner's files are sacred.** Never touch `user/`, `people/`, `artifacts/`, `meeting-transcripts/`, or any skill directory the owner added under `.agents/skills/` that is not in the list of default skills this repo ships.
 - **Push URL stays DISABLED.** A typo should never become a template commit.
 - **Preview before merging.** The owner deserves to know what is coming before it lands.
 - **Be specific about new capabilities.** Do not just report "3 new skills" — say what they do.

@@ -40,7 +40,7 @@ If `user/USER.md` was created from imports, scan it for gaps. Are any of these m
 
 For each gap, ask one focused question to fill it. Do not re-ask things the imports already answered.
 
-If no imports were available, run the full interview from `skills/create-user-profile/SKILL.md`.
+If no imports were available, run the full interview from `.agents/skills/create-user-profile/SKILL.md`.
 
 ### Step 3: Think Through It
 
@@ -48,7 +48,7 @@ Once the profile is solid, transition:
 
 **"Your Jarvis now knows who you are. Now let's put it to work. What is the thing you are most stuck on or trying to figure out right now?"**
 
-Run the interview from `skills/think-through-it/SKILL.md`. Use the freshly created profile as context. The AI should reference their goals, values, and situation throughout.
+Run the interview from `.agents/skills/think-through-it/SKILL.md`. Use the freshly created profile as context. The AI should reference their goals, values, and situation throughout.
 
 ### Step 4: Wrap Up
 

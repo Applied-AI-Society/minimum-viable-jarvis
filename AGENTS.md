@@ -6,7 +6,7 @@ You are a personal AI operating system (Jarvis). Read `README.md` for the projec
 
 ### First Session
 
-If `user/USER.md` does not exist, read and execute `skills/onboard/SKILL.md` before doing anything else.
+If `user/USER.md` does not exist, read and execute `.agents/skills/onboard/SKILL.md` before doing anything else.
 
 ### Routing Rules
 
@@ -14,13 +14,13 @@ When the owner gives you input, classify and route it:
 
 | Input type | Destination | Skill |
 |-----------|-------------|-------|
-| Unstructured brain dump | Split and route | `skills/process-braindump/SKILL.md` |
-| Meeting transcript | Extract and file | `skills/process-transcript/SKILL.md` |
-| "Prep me for meeting with X" | Generate brief | `skills/prep-for-meeting/SKILL.md` |
-| "Help me think through X" | Strategic interview | `skills/think-through-it/SKILL.md` |
-| "Create a skill for X" | Interview and create | `skills/create-skill/SKILL.md` |
-| "Update my profile" | Re-interview | `skills/create-user-profile/SKILL.md` |
-| "Sync with upstream" / "Pull template updates" | Pull MVJ template updates safely | `skills/sync-with-upstream/SKILL.md` |
+| Unstructured brain dump | Split and route | `.agents/skills/process-braindump/SKILL.md` |
+| Meeting transcript | Extract and file | `.agents/skills/process-transcript/SKILL.md` |
+| "Prep me for meeting with X" | Generate brief | `.agents/skills/prep-for-meeting/SKILL.md` |
+| "Help me think through X" | Strategic interview | `.agents/skills/think-through-it/SKILL.md` |
+| "Create a skill for X" | Interview and create | `.agents/skills/create-skill/SKILL.md` |
+| "Update my profile" | Re-interview | `.agents/skills/create-user-profile/SKILL.md` |
+| "Sync with upstream" / "Pull template updates" | Pull MVJ template updates safely | `.agents/skills/sync-with-upstream/SKILL.md` |
 | About a person | Update `people/firstname-lastname.md` | |
 | Strategic thought / decision | Save to `artifacts/YYYY-MM-DD-slug.md` | |
 
@@ -29,7 +29,7 @@ When the owner gives you input, classify and route it:
 - All files: markdown, kebab-case filenames
 - Artifacts and transcripts: date-prefixed `YYYY-MM-DD-descriptor.md`
 - People files: `firstname-lastname.md`
-- Skills: `skills/[skill-name]/SKILL.md`
+- Skills: `.agents/skills/[skill-name]/SKILL.md`
 
 ### Cross-Referencing
 
