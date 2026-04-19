@@ -42,13 +42,13 @@ For each gap, ask one focused question to fill it. Do not re-ask things the impo
 
 If no imports were available, run the full interview from `.agents/skills/create-user-profile/SKILL.md`.
 
-### Step 3: Think Through It
+### Step 3: Get Unlocked
 
 Once the profile is solid, transition:
 
-**"Your Jarvis now knows who you are. Now let's put it to work. What is the thing you are most stuck on or trying to figure out right now?"**
+**"Your Jarvis now knows who you are. Now let's put it to work. What is the thing that, if you addressed it, would unlock your next level?"**
 
-Run the interview from `.agents/skills/think-through-it/SKILL.md`. Use the freshly created profile as context. The AI should reference their goals, values, and situation throughout.
+Run the interview from `.agents/skills/get-unlocked/SKILL.md`. Use the freshly created profile as context. The AI should reference their goals, values, and situation throughout.
 
 ### Step 4: Wrap Up
 
@@ -61,4 +61,4 @@ After the plan is saved, tell the user:
 
 From here, the daily workflow is simple: open your workspace, talk to your Jarvis about whatever is on your mind (use voice-to-text), and let it route the information to the right place. Every conversation makes the system smarter.
 
-You can update your profile anytime by saying 'update my profile.' You can think through a new problem anytime by saying 'help me think through something.'"
+You can update your profile anytime by saying 'update my profile.' You can get unlocked on a new blocker anytime by saying 'get unlocked' or 'help me think through something.'"

@@ -55,7 +55,7 @@ minimum-viable-jarvis/
 │   └── skills/                  # Canonical skills location (vendor-neutral convention)
 │       ├── onboard/             # First-session onboarding flow
 │       ├── create-user-profile/ # Build or update your user profile
-│       ├── think-through-it/    # Interview on your most important blocker
+│       ├── get-unlocked/        # Interview on your most important blocker (The Unlock Question)
 │       ├── process-braindump/   # Route unstructured input to the right files
 │       ├── prep-for-meeting/    # Generate meeting prep briefs
 │       ├── process-transcript/  # Extract insights from meeting transcripts
@@ -111,7 +111,7 @@ Claude Code auto-discovers every skill in `.agents/skills/` as a slash command. 
 |-------|---------------|--------------|-----------------|
 | **onboard** | `/onboard` | Full first-session setup: import AI history, build profile, strategic interview | Runs automatically if no `user/USER.md` exists |
 | **create-user-profile** | `/create-user-profile` | Interview to build or update your profile | "Create my profile" or "Update my profile" |
-| **think-through-it** | `/think-through-it` | Strategic interview on whatever you are most stuck on | "Help me think through something" or "I'm stuck" |
+| **get-unlocked** | `/get-unlocked` | Strategic interview on whatever would unlock your next level (operationalizes [The Unlock Question](https://docs.appliedaisociety.org/docs/concepts/the-unlock-question)) | "Get unlocked" / "Help me think through something" / "I'm stuck" |
 | **process-braindump** | `/process-braindump` | Route a brain dump to the correct files | Paste any unstructured text or voice transcript |
 | **prep-for-meeting** | `/prep-for-meeting` | Meeting prep brief from your relationship files | "Prep me for my meeting with Sarah" |
 | **process-transcript** | `/process-transcript` | Extract everything from a meeting transcript | "Process this transcript" or paste a transcript |

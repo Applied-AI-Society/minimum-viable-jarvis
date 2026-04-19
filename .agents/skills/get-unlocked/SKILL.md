@@ -1,11 +1,13 @@
 ---
-name: think-through-it
-description: Interview the user about the thing they are most stuck on or working through right now. Uses their user profile for context. Creates an actionable plan. Use when user says "help me think", "I'm stuck", "what should I do about", or any time they need a strategic thinking partner.
+name: get-unlocked
+description: Interview the user about the thing that, if they addressed it, would unlock their next level. Uses their user profile for context. Produces an actionable plan. Invoked as /get-unlocked. Use when the user says "help me think", "I'm stuck", "what should I do about", "get unlocked", or when they need a strategic thinking partner.
 ---
 
-# Think Through It
+# Get Unlocked
 
-Interview the user about the most important thing they are puzzling over right now. Push for specificity. Produce an actionable plan.
+Interview the user about the thing that, if they addressed it, would unlock their next level. Push for specificity. Catch avoidance. Produce an actionable plan.
+
+This skill operationalizes [The Unlock Question](https://docs.appliedaisociety.org/docs/concepts/the-unlock-question): the lead question every leader of agents and humans should ask themselves.
 
 ## Pre-check
 
