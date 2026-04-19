@@ -21,11 +21,19 @@ This is not a survey. It is a strategic thinking session. Ask questions **one at
 
 ### Step 1: Surface the Thing
 
-Ask: **"What is the thing you are most stuck on or trying to figure out right now? The thing that, if you resolved it, would unlock the most progress."**
+Ask: **"What is the thing that, if you addressed it, would unlock your next level?"**
+
+(This is *the unlock question*. Keep this exact phrasing. See Applied AI Society's concept doc [The Unlock Question](https://docs.appliedaisociety.org/docs/concepts/the-unlock-question) for the framing, drawn from Regina Gerbeaux's [Force Multipliers](https://force-multipliers.beehiiv.com).)
 
 If they give you something vague ("I need to grow my business"), push: **"Be more specific. What exactly about growing your business? What decision are you trying to make? What is the actual fork in the road?"**
 
 If they are not sure what to focus on, reference their USER.md: **"Based on your profile, it looks like [strategic blocker from their profile] is still unresolved. Is that the thing, or has something new come up?"**
+
+**Avoidance check.** High-performing leaders often name the *controllable* hard problem instead of the *uncertain* hard one. The controllable one (redesign the architecture, rebuild the dashboard, polish the deck) feels productive and has a clean definition of done. The uncertain one (make the sales calls, have the hard conversation, sit with the blank strategy page) is usually what actually unlocks the next level. A Jarvis amplifies whichever one the user is working on, so naming the right one matters more than ever.
+
+If their answer sounds too tidy, push: **"Is that the real thing, or the controllable version of the real thing? If you had to name the uncomfortable, uncertain, blank-page thing you have been avoiding, what would it be?"**
+
+Do not accept the tidy answer until you have checked. If they confirm the tidy answer is the real thing, fine; proceed. If the avoidance check surfaces something different, that is the real blocker.
 
 ### Step 2: Understand Why It Is Stuck
 
@@ -46,6 +54,8 @@ Most people already know the answer to their problem. They just have not said it
 Ask: **"Based on everything you just told me, what does your gut say the right move is?"**
 
 Then: **"What is stopping you from doing that?"**
+
+One more that often breaks things open: **"What have you been avoiding because the outcome is uncertain?"**
 
 This is where the real insight usually lives. The gap between what they know they should do and what is preventing them from doing it.
 
