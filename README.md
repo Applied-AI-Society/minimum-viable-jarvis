@@ -48,14 +48,18 @@ minimum-viable-jarvis/
 ├── people/                      # One file per person in your life
 ├── artifacts/                   # Strategic documents, plans, decisions
 ├── meeting-transcripts/         # Processed transcripts from meetings
-├── scripts/                     # Workspace automation
-│   ├── sync.sh                  # Commit local changes, pull + push to GitHub
-│   └── install-sync-cron.sh     # Register hourly sync as a cron job
+├── scripts/                          # Workspace automation
+│   ├── sync.sh                       # Commit local changes, pull + push to GitHub
+│   ├── install-sync-cron.sh          # Mac / Linux: register hourly sync as a cron job
+│   ├── uninstall-sync-cron.sh        # Mac / Linux: remove the sync cron job
+│   ├── install-sync-task-windows.ps1 # Windows: register hourly sync as a Task Scheduler task
+│   └── uninstall-sync-task-windows.ps1 # Windows: remove the sync Scheduled Task
 ├── .agents/
 │   └── skills/                  # Canonical skills location (vendor-neutral convention)
 │       ├── onboard/             # First-session onboarding flow
 │       ├── create-user-profile/ # Build or update your user profile
 │       ├── get-unlocked/        # Interview on your most important blocker (The Unlock Question)
+│       ├── audit-my-week/       # Weekly reflection: real work vs high-leverage avoidance
 │       ├── process-braindump/   # Route unstructured input to the right files
 │       ├── prep-for-meeting/    # Generate meeting prep briefs
 │       ├── process-transcript/  # Extract insights from meeting transcripts
@@ -112,6 +116,7 @@ Claude Code auto-discovers every skill in `.agents/skills/` as a slash command. 
 | **onboard** | `/onboard` | Full first-session setup: import AI history, build profile, strategic interview | Runs automatically if no `user/USER.md` exists |
 | **create-user-profile** | `/create-user-profile` | Interview to build or update your profile | "Create my profile" or "Update my profile" |
 | **get-unlocked** | `/get-unlocked` | Strategic interview on whatever would unlock your next level (operationalizes [The Unlock Question](https://docs.appliedaisociety.org/docs/concepts/the-unlock-question)) | "Get unlocked" / "Help me think through something" / "I'm stuck" |
+| **audit-my-week** | `/audit-my-week` | Pull the last 7 days of git activity, artifacts, and transcripts; reflect against stated priorities; save a weekly retrospective | "Audit my week" / "Weekly review" / "What did I ship" |
 | **process-braindump** | `/process-braindump` | Route a brain dump to the correct files | Paste any unstructured text or voice transcript |
 | **prep-for-meeting** | `/prep-for-meeting` | Meeting prep brief from your relationship files | "Prep me for my meeting with Sarah" |
 | **process-transcript** | `/process-transcript` | Extract everything from a meeting transcript | "Process this transcript" or paste a transcript |
@@ -119,8 +124,8 @@ Claude Code auto-discovers every skill in `.agents/skills/` as a slash command. 
 | **sync-with-upstream** | `/sync-with-upstream` | Pull the latest template updates (new skills, scripts, README) without touching your personal files | "Sync with upstream" or "Pull template updates" |
 
 **Harness notes:**
-- **Claude Code** auto-discovers these via the committed `.claude/skills` symlink. Zero config.
-- **Codex** auto-discovers `.agents/skills/` natively. Zero config. Slash commands work the same way.
+- **Claude Code** auto-discovers these via the committed `.claude/skills` symlink and exposes them as first-class `/slash-commands`. Zero config.
+- **Codex** reads `.agents/skills/` and follows `AGENTS.md` routing, but it does not have a first-class `/slash-command` menu like Claude Code. Invoke skills with natural language ("help me think through this", "audit my week") or by explicit instruction ("run the get-unlocked skill"). Typing `/get-unlocked` often works because AGENTS.md is in context, but it is not a native command.
 - **Hermes** only auto-discovers skills from `~/.hermes/skills/` by default. To get slash-command discovery for workspace skills, add the workspace's `.agents/skills/` path to the `skills.external_dirs` list in `~/.hermes/config.yaml`. Natural-language triggers (via `AGENTS.md` routing) work regardless, even without the config.
 
 ## How It Works
@@ -141,20 +146,33 @@ Claude Code auto-discovers every skill in `.agents/skills/` as a slash command. 
 
 ## Keeping Your Workspace Synced
 
-Once you push your workspace to GitHub, you want it to stay synced automatically so nothing is ever lost and so any machine (or collaborator you invite) is up to date. The starter repo ships with a small sync script and a one-liner to install it as an hourly cron:
+Once you push your workspace to GitHub, you want it to stay synced automatically so nothing is ever lost and any machine (or collaborator you invite) is up to date. The starter repo ships a `scripts/sync.sh` that commits anything new, rebases against the remote, and pushes, plus one-command installers to run it hourly on whatever OS you are on. Output is appended to `.jarvis-sync.log` (git-ignored).
+
+**Mac / Linux:**
 
 ```bash
-# one-time
+# install
 bash scripts/install-sync-cron.sh
+
+# remove later
+bash scripts/uninstall-sync-cron.sh
 ```
 
-That registers a cron entry that runs `scripts/sync.sh` every hour. The script commits anything new, rebases against the remote, and pushes. Output is appended to `.jarvis-sync.log` (ignored by git).
+Registers a cron entry that runs `scripts/sync.sh` every hour.
 
-Prerequisites: `gh auth login` must be complete (so pushes work without prompting). Remove the cron later with:
+**Windows (PowerShell):**
 
-```bash
-crontab -l | grep -v scripts/sync.sh | crontab -
+```powershell
+# install
+powershell -ExecutionPolicy Bypass -File .\scripts\install-sync-task-windows.ps1
+
+# remove later
+powershell -ExecutionPolicy Bypass -File .\scripts\uninstall-sync-task-windows.ps1
 ```
+
+Registers a Task Scheduler task named `JarvisSync-<your-workspace>` that runs `scripts/sync.sh` via Git Bash every hour. Requires Git for Windows (which ships `bash.exe`).
+
+Prerequisites for either OS: `gh auth login` must be complete so pushes work without prompting.
 
 ## Harness Compatibility
 

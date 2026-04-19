@@ -18,6 +18,7 @@ When the owner gives you input, classify and route it:
 | Meeting transcript | Extract and file | `.agents/skills/process-transcript/SKILL.md` |
 | "Prep me for meeting with X" | Generate brief | `.agents/skills/prep-for-meeting/SKILL.md` |
 | "Help me think through X" / "Get unlocked" / "I'm stuck" | Strategic interview, lead with The Unlock Question | `.agents/skills/get-unlocked/SKILL.md` |
+| "Audit my week" / "Weekly review" / "What did I ship" | Pull last 7 days of activity, reflect vs priorities, save retrospective | `.agents/skills/audit-my-week/SKILL.md` |
 | "Create a skill for X" | Interview and create | `.agents/skills/create-skill/SKILL.md` |
 | "Update my profile" | Re-interview | `.agents/skills/create-user-profile/SKILL.md` |
 | "Sync with upstream" / "Pull template updates" | Pull MVJ template updates safely | `.agents/skills/sync-with-upstream/SKILL.md` |
