@@ -63,6 +63,7 @@ minimum-viable-jarvis/
 │       ├── process-braindump/   # Route unstructured input to the right files
 │       ├── prep-for-meeting/    # Generate meeting prep briefs
 │       ├── process-transcript/  # Extract insights from meeting transcripts
+│       ├── sync-granola/        # Pull recent Granola meeting notes into meeting-transcripts/
 │       ├── create-skill/        # Create new skills through interview
 │       └── sync-with-upstream/  # Pull updates from the MVJ template
 └── .claude/
@@ -120,6 +121,7 @@ Claude Code auto-discovers every skill in `.agents/skills/` as a slash command. 
 | **process-braindump** | `/process-braindump` | Route a brain dump to the correct files | Paste any unstructured text or voice transcript |
 | **prep-for-meeting** | `/prep-for-meeting` | Meeting prep brief from your relationship files | "Prep me for my meeting with Sarah" |
 | **process-transcript** | `/process-transcript` | Extract everything from a meeting transcript | "Process this transcript" or paste a transcript |
+| **sync-granola** | `/sync-granola` | Pull recent Granola meeting notes into `meeting-transcripts/` (Mac, on demand) | "Sync granola" / "Pull my granola notes" / "Get my recent meetings" |
 | **create-skill** | `/create-skill` | Interview you to create a new skill file | "Create a skill for X" or "I want a workflow for X" |
 | **sync-with-upstream** | `/sync-with-upstream` | Pull the latest template updates (new skills, scripts, README) without touching your personal files | "Sync with upstream" or "Pull template updates" |
 

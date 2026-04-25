@@ -22,6 +22,7 @@ When the owner gives you input, classify and route it:
 | "Create a skill for X" | Interview and create | `.agents/skills/create-skill/SKILL.md` |
 | "Update my profile" | Re-interview | `.agents/skills/create-user-profile/SKILL.md` |
 | "Sync with upstream" / "Pull template updates" | Pull MVJ template updates safely | `.agents/skills/sync-with-upstream/SKILL.md` |
+| "Sync granola" / "Pull my granola notes" / "Get my recent meetings" | Import recent Granola meetings into `meeting-transcripts/` | `.agents/skills/sync-granola/SKILL.md` |
 | About a person | Update `people/firstname-lastname.md` | |
 | Strategic thought / decision | Save to `artifacts/YYYY-MM-DD-slug.md` | |
 
