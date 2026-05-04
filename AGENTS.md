@@ -14,7 +14,8 @@ When the owner gives you input, classify and route it:
 
 | Input type | Destination | Skill |
 |-----------|-------------|-------|
-| Unstructured brain dump | Split and route | `.agents/skills/process-braindump/SKILL.md` |
+| "Decongest" / "I have something in my head" / "Help me get this out" / recurring stuck thought | Extract a single seed, interview, draft, save | `.agents/skills/decongest/SKILL.md` |
+| Unstructured brain dump (already produced) | Split and route | `.agents/skills/process-braindump/SKILL.md` |
 | Meeting transcript | Extract and file | `.agents/skills/process-transcript/SKILL.md` |
 | "Prep me for meeting with X" | Generate brief | `.agents/skills/prep-for-meeting/SKILL.md` |
 | "Help me think through X" / "Get unlocked" / "I'm stuck" | Strategic interview, lead with The Unlock Question | `.agents/skills/get-unlocked/SKILL.md` |
